@@ -1,0 +1,5 @@
+# Include all your extra files here. See examples below.
+# + /opt/
+# + /home/somedir/
+# + /home/somefile
+# - *
