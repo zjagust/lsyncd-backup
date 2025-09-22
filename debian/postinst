@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+# Ensure systemd reloads unit files if we ship overrides
+systemctl daemon-reexec || true
+
+exit 0

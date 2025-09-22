@@ -1,0 +1,14 @@
+Source: lsyncd-backup
+Section: utils
+Priority: optional
+Maintainer: Željko Jagušt <you@example.com>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.6.2
+
+Package: lsyncd-backup
+Architecture: all
+Depends: lsyncd (>= 2.3.0), ${misc:Depends}
+Description: Custom lsyncd backup setup (configuration and helper scripts)
+ This package provides configuration files, include file templates, and helper
+ scripts for lsyncd. It does not enable or start the lsyncd service by default,
+ so the user can configure include lists before activating backups.
