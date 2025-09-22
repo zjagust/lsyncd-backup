@@ -1,6 +1,28 @@
 #!/bin/sh
 set -e
 
+# Create log directory if not exists
+if [ ! -d /var/log/lsyncd ]; then
+    mkdir -p /var/log/lsyncd
+    chown root:adm /var/log/lsyncd
+    chmod 755 /var/log/lsyncd
+fi
+
+# Create /var/log/lsyncd/lsyncd.log
+if [ ! -f /var/log/lsyncd/lsyncd.log ]; then
+    touch /var/log/lsyncd/lsyncd.log
+    chown root:adm /var/log/lsyncd/lsyncd.log
+    chmod 644 /var/log/lsyncd/lsyncd.log
+fi
+
+# Create /var/run/lsyncd.status
+# (runtime files usually belong to root:root)
+if [ ! -f /var/run/lsyncd.status ]; then
+    touch /var/run/lsyncd.status
+    chown root:root /var/run/lsyncd.status
+    chmod 644 /var/run/lsyncd.status
+fi
+
 # Ensure systemd reloads unit files if we ship overrides
 systemctl daemon-reexec || true
 
