@@ -1,0 +1,1 @@
+debian/lsyncd-backup.logrotate etc/logrotate.d/lsyncd-backup

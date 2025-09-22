@@ -1,0 +1,10 @@
+/var/log/lsyncd/lsyncd.log {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    copytruncate
+    missingok
+    notifempty
+    create 644 root adm
+}

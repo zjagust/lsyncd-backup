@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "purge" ]; then
+    rm -f /var/log/lsyncd/lsyncd.log
+    rm -f /var/run/lsyncd.status
+    rmdir --ignore-fail-on-non-empty /var/log/lsyncd || true
+fi
+
+exit 0
