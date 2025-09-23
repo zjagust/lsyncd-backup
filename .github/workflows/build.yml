@@ -62,5 +62,5 @@ jobs:
       - name: Verify config files
         run: |
           test -f /etc/lsyncd/lsyncd.conf.lua
-          test -f /etc/logrotate.d/lsyncd
+          test -f /etc/logrotate.d/lsyncd-backup
           echo "✅ All expected files exist"
