@@ -1,2 +1,5 @@
-debian/lsyncd-backup.logrotate etc/logrotate.d/lsyncd-backup
-etc/lsyncd/lsyncd.conf.lua etc/lsyncd/lsyncd.conf.lua
+debian/lsyncd-backup.logrotate etc/logrotate.d/
+etc/lsyncd/lsyncd.conf.lua etc/lsyncd/
+etc/lsyncd/includes/extra etc/lsyncd/includes/
+etc/lsyncd/includes/system etc/lsyncd/includes/
+etc/lsyncd/includes/user etc/lsyncd/includes/
