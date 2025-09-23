@@ -7,7 +7,7 @@ Standards-Version: 4.6.2
 
 Package: lsyncd-backup
 Architecture: all
-Depends: lsyncd (>= 2.3.0), ${misc:Depends}
+Depends: lsyncd (>= 2.2.3), ${misc:Depends}
 Description: Custom lsyncd backup setup (configuration and helper scripts)
  This package provides configuration files, include file templates, and helper
  scripts for lsyncd. It does not enable or start the lsyncd service by default,
