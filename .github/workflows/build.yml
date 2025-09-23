@@ -1,0 +1,64 @@
+name: Build and Test lsyncd-backup
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:trixie   # Debian 13 build env
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            build-essential \
+            devscripts \
+            debhelper \
+            dh-make \
+            lsyncd \
+            logrotate \
+            git
+
+      - name: Build Debian package
+        run: |
+          dpkg-buildpackage -us -uc -b
+
+      - name: Upload DEB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lsyncd-backup-deb
+          path: ../*.deb
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    container:
+      image: debian:trixie   # Debian 13 test env
+
+    steps:
+      - name: Download DEB artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: lsyncd-backup-deb
+          path: ./deb
+
+      - name: Install package
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y ./deb/*.deb
+          lsyncd --version
+
+      - name: Verify config files
+        run: |
+          test -f /etc/lsyncd/lsyncd.conf.lua
+          test -f /etc/logrotate.d/lsyncd
+          echo "✅ All expected files exist"
