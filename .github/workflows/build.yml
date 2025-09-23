@@ -58,7 +58,10 @@ jobs:
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get install -y ./deb/*.deb
           lsyncd --version
-
+      
+      - name: List installed files
+        run: dpkg -L lsyncd-backup
+        
       - name: Verify config files
         run: |
           test -f /etc/lsyncd/lsyncd.conf.lua
