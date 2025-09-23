@@ -30,13 +30,15 @@ jobs:
 
       - name: Build Debian package
         run: |
-          dpkg-buildpackage -us -uc -b
+          dpkg-buildpackage -us -uc -b -tc --build=any
+          mkdir -p debs
+          mv ../*.deb debs/
 
       - name: Upload DEB artifact
         uses: actions/upload-artifact@v4
         with:
           name: lsyncd-backup-deb
-          path: ../*.deb
+          path: debs/*.deb
 
   test:
     runs-on: ubuntu-latest
