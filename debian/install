@@ -4,4 +4,4 @@ etc/lsyncd/includes/system etc/lsyncd/includes/
 etc/lsyncd/includes/user etc/lsyncd/includes/
 etc/logrotate.d/lsyncd-backup etc/logrotate.d/
 systemd/lsyncd.service.d/override.conf etc/systemd/system/lsyncd.service.d/
-usr/local/bin/lsyncd-merge-includes usr/local/bin/
+usr/bin/lsyncd-merge-includes usr/bin/

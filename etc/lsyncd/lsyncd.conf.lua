@@ -8,7 +8,7 @@ settings {
         statusInterval = 60
 }
 
-local merged = io.popen("/usr/local/bin/lsyncd-merge-includes"):read("*l")
+local merged = io.popen("/usr/bin/lsyncd-merge-includes"):read("*l")
 
 sync {
         default.rsync,
