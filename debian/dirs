@@ -1,2 +1,3 @@
+etc/systemd/system/lsyncd.service.d/
 var/log/lsyncd
 var/run
