@@ -1,7 +1,7 @@
 --
 
 settings {
-        logfile = "/var/log/lsyncd.log",
+        logfile = "/var/log/lsyncd/lsyncd.log",
         statusFile = "/var/run/lsyncd.status",
         insist = true,
         inotifyMode = "CloseWrite or Modify",
