@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    remove|upgrade|deconfigure)
+        # Stop lsyncd if it is running and systemctl is available
+        if [ -x /bin/systemctl ] || [ -x /usr/bin/systemctl ]; then
+            systemctl stop lsyncd.service || true
+        fi
+        ;;
+    *)
+        # Nothing to do for other actions (e.g., failed-install) - dummy update
+        ;;
+esac
+
+exit 0
