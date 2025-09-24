@@ -71,5 +71,5 @@ jobs:
           test -f /etc/lsyncd/lsyncd.conf.lua
           test -f /etc/systemd/system/lsyncd.service.d/override.conf
           test -f /usr/bin/lsyncd-merge-includes
-          test -f /var/log/lsyncd
+          test -f /var/log/lsyncd/lsyncd.log
           echo "✅ All expected files exist"
