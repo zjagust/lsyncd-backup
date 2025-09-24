@@ -5,7 +5,7 @@ MERGED="/run/lsyncd.merged-includes"
 : > "$MERGED"   # truncate
 
 for f in /etc/lsyncd/includes/*; do
-    [ -r "$f" ] && cat "$f" >> "$MERGED"
+    [ -r "$f" ] && cat "$f" | grep -Ev "^\s*(#)" >> "$MERGED"
 done
 
 # Always ensure we end with "exclude all"
