@@ -61,9 +61,15 @@ jobs:
       
       - name: List installed files
         run: dpkg -L lsyncd-backup
-        
+
       - name: Verify config files
         run: |
-          test -f /etc/lsyncd/lsyncd.conf.lua
           test -f /etc/logrotate.d/lsyncd-backup
+          test -f /etc/lsyncd/includes/extra
+          test -f /etc/lsyncd/includes/system
+          test -f /etc/lsyncd/includes/user
+          test -f /etc/lsyncd/lsyncd.conf.lua
+          test -f /etc/systemd/system/lsyncd.service.d/override.conf
+          test -f /usr/bin/lsyncd-merge-includes
+          test -f /var/log/lsyncd
           echo "✅ All expected files exist"
