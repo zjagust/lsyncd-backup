@@ -16,14 +16,23 @@ if [ ! -f /var/log/lsyncd/lsyncd.log ]; then
 fi
 
 # Create /var/run/lsyncd.status
-# (runtime files usually belong to root:root)
 if [ ! -f /var/run/lsyncd.status ]; then
     touch /var/run/lsyncd.status
     chown root:root /var/run/lsyncd.status
     chmod 644 /var/run/lsyncd.status
 fi
 
-# Ensure systemd reloads unit files if we ship overrides
-systemctl daemon-reexec || true
+# --- Systemd integration ---
+if [ -x /bin/systemctl ] || [ -x /usr/bin/systemctl ]; then
+    systemctl daemon-reload || true
+    systemctl try-restart lsyncd.service || true
+else
+    if command -v deb-systemd-helper >/dev/null 2>&1; then
+        deb-systemd-helper debian-installed lsyncd.service || true
+    fi
+    if command -v deb-systemd-invoke >/dev/null 2>&1; then
+        deb-systemd-invoke reload-or-try-restart lsyncd.service || true
+    fi
+fi
 
 exit 0
